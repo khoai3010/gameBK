@@ -1,4 +1,4 @@
-#include "..\Header\common.h"
+#include "Header\common.h"
 
 
 Vector3::Vector3(float x, float y, float z)

@@ -1,4 +1,4 @@
-#include "..\Header\common.h"
+#include "Header\common.h"
 
 string modulPath = "C:\\projects\\Cpp\\GameBK\\GameBK\\modul\\";
 string objSubfix = ".obj";

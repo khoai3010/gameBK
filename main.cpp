@@ -1,4 +1,4 @@
-#include "..\Header\common.h"
+#include "Header\common.h"
 
 int main()
 {
