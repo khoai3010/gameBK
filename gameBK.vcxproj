@@ -128,12 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="math.cpp" />
+    <ClCompile Include="modul.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="tree.obj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="map.txt" />
+    <ClInclude Include="Header\common.h" />
+    <ClInclude Include="Header\map.h" />
+    <ClInclude Include="Header\math.h" />
+    <ClInclude Include="Header\modul.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

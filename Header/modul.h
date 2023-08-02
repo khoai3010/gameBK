@@ -1,15 +1,6 @@
 #pragma once
 using namespace std;
 
-enum ModulType
-{
-	tree,
-	house,
-	car
-};
-
-
-
 class Modul
 {
 public:
@@ -24,16 +15,11 @@ public:
 public:
 	Modul() {}
 
-	Modul(int id, int byte, string name, Vector3 position, Vector3 scale, Vector3 rotation);
+	Modul(int id, string name, Vector3 position, Vector3 scale, Vector3 rotation);
 
 public:
 	void GenerateFile();
 
-	void ShowInfo();
+	void AddToMap(string mapPath);
 };
 
-
-class Map
-{
-
-};

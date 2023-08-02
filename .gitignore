@@ -3,3 +3,5 @@
 *.db-shm
 *.db
 .vs/gameBK/v17/Browse.VC.opendb
+*.ipch
+*.db-wal
