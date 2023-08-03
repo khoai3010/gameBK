@@ -10,7 +10,7 @@
 enum ModulType
 {
 	NONE,
-	TREE,
+	TREE = 12,
 	HOUSE,
 	CAR,
 	GOTO,

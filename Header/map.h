@@ -14,8 +14,8 @@ class Map
 public:
 	int id;
 	string name = "map"; //origin point will be left corner of the screen
-	int XZ[10][10]; // x represent for length, z for depth
-	int Y[10];		// y for height
+	int XY[10][10]; // x represent for length, y for depth
+	int Z[10];		// Z for height
 	Vector2 position;
 	string path;
 
