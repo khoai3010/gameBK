@@ -45,6 +45,7 @@ void Modul(ModulType);//input the information about object
 void Play();
 void Move(int t);//move the character
 int CountMap();
+void ReadMap(int x);
 Vector3 CheckSpawn(Vector3);
 Vector3 RandomVector3();
 
@@ -52,7 +53,7 @@ int map[11][11];
 
 
 
-int main() 
+int main()
 {
 	Menu();
 
@@ -65,7 +66,7 @@ void Menu()
 	int option = 0;
 	int countMapInFile = CountMap();
 
-	while (option != 3) 
+	while (option != 3)
 	{
 		system("cls");
 		cout << "MENU:" << endl;
@@ -75,43 +76,43 @@ void Menu()
 		cout << "Enter your option: ";
 		cin >> option;
 
-		switch (option) 
+		switch (option)
 		{
-			case 1:
-				system("cls");
-				CreateMap(countMapInFile + 1);
-				cout << "you created a new map!" << endl;
-				Sleep(2000);
-				break;
+		case 1:
+			system("cls");
+			CreateMap(++countMapInFile );
+			cout << "you created a new map!" << endl;
+			Sleep(2000);
+			break;
 
-			case 2:
-				system("cls");
-				Play();
-				break;
+		case 2:
+			system("cls");
+			Play();
+			break;
 
-			case 3:
-				system("cls");
-				cout << "goodbye!";
-				return;
+		case 3:
+			system("cls");
+			cout << "goodbye!";
+			return;
 
-			default:
-				cout << "Doesn't exist that option" << endl;
-				system("pause");
-				break;
+		default:
+			cout << "Doesn't exist that option" << endl;
+			system("pause");
+			break;
 		}
 	}
 
 	Menu();
 }
 
-void Modul(ModulType modulType) 
+void Modul(ModulType modulType)
 {
 	Vector3 objPos;
-	
-	objPos.x = RandomInt().x;
-	objPos.y = RandomInt().y;
+
+	objPos.x = RandomVector3().x;
+	objPos.y = RandomVector3().y;
 	objPos.z = 1;
-	
+
 	objPos.x = CheckSpawn(objPos).x;
 	objPos.y = CheckSpawn(objPos).y;
 	map[objPos.x][objPos.y] = 1;
@@ -120,34 +121,34 @@ void Modul(ModulType modulType)
 	fstream output;
 	string objName;
 
-	output.open("map.txt",ios::app);
+	output.open("map.txt", ios::app);
 	output << "OBJ" << modulType << endl;
 
-	switch (modulType) 
+	switch (modulType)
 	{
-		case 1: objName = "tree";//name of the object
-			output << objName << endl;
-			output << "C:/Users/GIGABYTE/source/repos/gameBK/tree.obj" << endl;//the path of the file object
-			output << objPos.x << "," << objPos.y << "," << 1 << endl;//location
-			output << 1 << "," << 1 << "," << 1 << endl;//size
-			output << 0 << "," << 0 << "," << 0 << endl;//swivel angle
-			break;
+	case 1: objName = "tree";//name of the object
+		output << objName << endl;
+		output << "C:/Users/GIGABYTE/source/repos/gameBK/tree.obj" << endl;//the path of the file object
+		output << objPos.x << "," << objPos.y << "," << 1 << endl;//location
+		output << 1 << "," << 1 << "," << 1 << endl;//size
+		output << 0 << "," << 0 << "," << 0 << endl;//swivel angle
+		break;
 
-		case 2: objName = "house";
-			output << objName << endl;
-			output << "C:/Users/GIGABYTE/source/repos/gameBK/house.obj" << endl;//the path of the file object
-			output << objPos.x << "," << objPos.y << "," << 1 << endl;//location
-			output << 1 << "," << 1 << "," << 1 << endl;//size
-			output << 0 << "," << 0 << "," << 0 << endl;//swivel angle
-			break;
+	case 2: objName = "house";
+		output << objName << endl;
+		output << "C:/Users/GIGABYTE/source/repos/gameBK/house.obj" << endl;//the path of the file object
+		output << objPos.x << "," << objPos.y << "," << 1 << endl;//location
+		output << 1 << "," << 1 << "," << 1 << endl;//size
+		output << 0 << "," << 0 << "," << 0 << endl;//swivel angle
+		break;
 
-		case 3: objName = "car";
-			output << objName << endl;
-			output << "C:/Users/GIGABYTE/source/repos/gameBK/house.obj" << endl;//the path of the file object
-			output << objPos.x << "," << objPos.y << "," << 1 << endl;//location
-			output << 1 << "," << 1 << "," << 1 << endl;//size
-			output << 0 << "," << 0 << "," << 0 << endl;//swivel angle
-			break;
+	case 3: objName = "car";
+		output << objName << endl;
+		output << "C:/Users/GIGABYTE/source/repos/gameBK/house.obj" << endl;//the path of the file object
+		output << objPos.x << "," << objPos.y << "," << 1 << endl;//location
+		output << 1 << "," << 1 << "," << 1 << endl;//size
+		output << 0 << "," << 0 << "," << 0 << endl;//swivel angle
+		break;
 	}
 
 	output.close();
@@ -155,23 +156,24 @@ void Modul(ModulType modulType)
 
 
 void Play() {
-	
+
 	int m;//the map that character in
-	
+
 	m = 1;
-	
+
 	//show map
 	bool p = true;
-
+	cout << "you are in map 1"<<endl;
 	cout << "press m to move" << endl;
 	cout << "press e to exit to menu" << endl;
+	ReadMap(m);
 	while (p) {
-		
+
 		//move the character
 		if (_kbhit()) {
 			char c = _getch();
 			if (c == 'm') {
-				Move( m);
+				Move(m);
 
 			}
 			else if (c == 'e') {
@@ -179,14 +181,14 @@ void Play() {
 			}
 		}
 	}
-	
+
 }
 
 void CreateMap(int a) {
-	
+
 	ifstream input;
 	fstream output;
-	
+
 	output.open("map.txt", ios::app);
 	output << "MAP" << a << endl;
 	output.close();
@@ -196,16 +198,18 @@ void CreateMap(int a) {
 }
 
 
-void Move(int t) 
+void Move(int t)
 {
 	cout << "Where you want to go?" << endl;
 	cout << "Enter the map that you want to go to:";
 	cin >> t;
-	cout << "You are in the map " << t << endl;;
+	system("cls");
+	cout << "You are in the map " << t << endl;
+	ReadMap(t);
 }
 
 
-Vector3 RandomInt()
+Vector3 RandomVector3()
 {
 	srand((unsigned int)time(0));
 	Vector3 ranVec;
@@ -229,30 +233,58 @@ Vector3 CheckSpawn(Vector3 checkVec)
 }
 
 
-int CountMap() 
+int CountMap()
 {
-	ofstream output;
-	ifstream input;
-	input.open("map.txt");
-	
 	int mapCountVar = 0;
+	fstream inputFile;
+	inputFile.open("map.txt", ios::in);
 
-	if (!input.eof())
-		return 0;
+	string line;
+	string content;
 
-	while (!input.eof())
+	while (getline(inputFile, line))
 	{
-		string line;
-
-		getline(input, line);
-
-		line.erase(line.length() - 1);
-
-		if (line == "MAP")
+		if (line.find("MAP") != string::npos)
+		{
 			mapCountVar++;
-		//cout << line << endl;
+		}
+	}
+	if (!inputFile.eof()) {
+		return 0;
+	}
+	inputFile.close();
+	return mapCountVar;
+}
+void ReadMap(int x)
+{
+	fstream inputFile;
+	inputFile.open("map.txt", ios::in);
+	int mapCount = 0;
+	string line;
+	string content;
+
+	while (getline(inputFile, line))
+	{
+		if (line.find("MAP") != string::npos)
+		{
+			mapCount++;
+			if (mapCount >= x && mapCount < x + 1)
+			{
+				content += line + "\n";
+			}
+			if (mapCount > x + 1)
+			{
+				break;
+			}
+		}
+		else if (mapCount >= x && mapCount < x + 1)
+		{
+			content += line + "\n";
+		}
 	}
 
-	input.close();
-	return mapCountVar;
+	inputFile.close();
+
+	cout << content;
+
 }
